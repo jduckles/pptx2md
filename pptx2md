@@ -22,7 +22,7 @@ if [ $? -ne 0 ]; then
 fi
 
 #replace <> with \n, images with placeholder, strip style.visibility
-for filename in $(ls $temp/ppt/slides/*.xml | sort --version-sort -f); do
+for filename in $(ls $temp/ppt/slides/*.xml | gsort --version-sort -f); do
 	cat $filename | sed -e "s/<p:cNvPr .\+ id=\"[0-9]\+\" name=\"Picture [0-9]\+\"\/>/pptx2md PICTURE GOES HERE/g" -e 's/\(<[^>]*>\)\+/\n\n/g' -e's/style.visibility\n//g' >> $output
 done
 
